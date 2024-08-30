@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パチモンゲーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>パチモン冒険！</h1>
+        
+        <!-- スタートシーン -->
+        <div id="scene-intro" class="scene">
+            <p>某博士: 「やあ、冒険者よ！今日は君に5匹のパチモンの中から1匹を選んでもらうよ！」</p>
+            <button onclick="chooseMonster()">パチモンを選ぶ</button>
+        </div>
+        
+        <!-- モンスター選択シーン -->
+        <div id="scene-choose" class="scene" style="display:none;">
+            <p>どのパチモンを選びますか？</p>
+            <button onclick="startAdventure('日陰', '火', 120, 25)">日陰（火）</button>
+            <button onclick="startAdventure('銭亀', '水', 150, 15)">銭亀（水）</button>
+            <button onclick="startAdventure('摩訶不思議シード', '草', 100, 30)">摩訶不思議シード（草）</button>
+            <button onclick="startAdventure('雷神', '雷', 130, 20)">雷神（雷）</button>
+            <button onclick="startAdventure('眠り草', '眠り', 110, 22)">眠り草（眠り）</button>
+        </div>
+        
+        <!-- 冒険シーン -->
+        <div id="scene-adventure" class="scene" style="display:none;">
+            <p>冒険を始めましょう！カカノ村を探索して、パチモンバトルを楽しみましょう！</p>
+            <button onclick="explore('center')">回復センター</button>
+            <button onclick="explore('rival')">ライバルの家</button>
+            <button onclick="explore('grass')">草むら</button>
+        </div>
+        
+        <!-- 草むらシーン -->
+        <div id="scene-grass" class="scene" style="display:none;">
+            <p id="grass-message"></p>
+            <button onclick="moveForward()">進む</button>
+            <button onclick="returnToAdventure()">冒険に戻る</button>
+        </div>
+
+        <!-- バトルシーン -->
+        <div id="scene-battle" class="scene" style="display:none;">
+            <div class="battle-info">
+                <div class="pokemon player">
+                    <h2>あなたのパチモン: <span id="player-monster-name"></span></h2>
+                    <p>HP: <span id="player-hp">100</span></p>
+                    <p>攻撃力: <span id="player-attack">20</span></p>
+                    <p>経験値: <span id="player-xp">0</span></p>
+                </div>
+                <div class="pokemon enemy">
+                    <h2>敵のパチモン: <span id="enemy-monster-name"></span></h2>
+                    <p>HP: <span id="enemy-hp">100</span></p>
+                    <p>攻撃力: <span id="enemy-attack">20</span></p>
+                </div>
+            </div>
+            <button onclick="attack()">こうげき！</button>
+            <p id="battle-message"></p>
+        </div>
+
+        <!-- 探索シーン -->
+        <div id="scene-explore" class="scene" style="display:none;">
+            <p id="explore-message"></p>
+            <button onclick="returnToAdventure()">冒険に戻る</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="sound.js"></script>
+</body>
+</html>
